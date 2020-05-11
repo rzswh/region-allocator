@@ -1,3 +1,4 @@
+#![no_std]
 #![feature(btree_drain_filter)]
 
 extern crate alloc;
