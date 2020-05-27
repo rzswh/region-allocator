@@ -58,6 +58,15 @@ impl RegionAllocator {
             }
         }
     }
+
+    pub fn add_or_subtract(&mut self, base: usize, size: usize, is_add: bool) {
+        if is_add {
+            self.add(base, size);
+        } else {
+            self.subtract(base, size);
+        }
+    }
+
     pub fn allocate_by_addr(&mut self, base: usize, size: usize) -> bool {
         for r in &self.regions {
             if r.base <= base && base + size <= r.base + r.size {
