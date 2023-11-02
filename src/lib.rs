@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(btree_drain_filter)]
+#![feature(btree_extract_if)]
 
 extern crate alloc;
 
@@ -117,7 +117,7 @@ impl RegionAllocator {
 
     fn intersection_all(&mut self, region: &Region) -> Vec<Region> {
         self.regions
-            .drain_filter(|r| {
+            .extract_if(|r| {
                 !(r.base > region.base + region.size || r.base + r.size < region.base)
             })
             .collect()
